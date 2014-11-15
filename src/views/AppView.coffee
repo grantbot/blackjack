@@ -11,6 +11,8 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
+    # create listener for 'blackjack' event
+      # call function render in appview (or alert 'you have blackjack')
 
   render: ->
     @$el.children().detach()
