@@ -11,6 +11,8 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
+    # listen for 1 of 3 events (player win, dealer win, tie)
+    # listen for end game, check context of event for dealer/player win
     # create listener for 'blackjack' event
       # call function render in appview (or alert 'you have blackjack')
 

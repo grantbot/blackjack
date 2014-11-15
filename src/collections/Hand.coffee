@@ -4,6 +4,7 @@ class window.Hand extends Backbone.Collection
   initialize: (initialHand, @deck, @isDealer) ->
 
     @.on 'add', => @checkOutcome()
+    self = @
     # Another way to get @scores to fire after the cards are saved,
     # instead of calling it outside in Deck model
     # setTimeout(=>
@@ -39,17 +40,20 @@ class window.Hand extends Backbone.Collection
     @hasBust(scores)
 
   hasBust: (scores) ->
-    if Math.min(scores[0], scores[1]) > 21 then @trigger('bust')
+    if Math.min(scores[0], scores[1]) > 21 then @trigger('bust', this)
     # Reset board
 
   hasBlackjack: (scores) ->
-    if scores[0] is 21 or scores[1] is 21 then @trigger('blackjack')
+    if scores[0] is 21 or scores[1] is 21 then @trigger('blackjack', this)
     # Reset board
 
   dealerPlay: ->
     @models[0].set('revealed', true)
+    # Dealer should stand on soft 17s (e.g. 17 = 6 + Ace (high)) as well
     while Math.min(@scores()[0], @scores()[1]) < 17
       console.log(@scores()[0])
       @hit()
+
+    if Math.min(@scores()[0], @scores()[1]) <= 21 then @trigger('stand')
 
 

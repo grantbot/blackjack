@@ -8,8 +8,10 @@ class window.HandView extends Backbone.View
     @collection.on 'add remove change', => @render()
 
     @render()
-    @collection.on 'blackjack', => alert("blackjack yo")
-    @collection.on 'bust', => alert("bitch you broke, shut up, don't talk to me")
+
+    #Refactor these to distinguish between player and dealer
+    @collection.on 'blackjack', (playerOrDealer) => console.log(playerOrDealer)
+    @collection.on 'bust', (playerOrDealer) => console.log(playerOrDealer)
 
   render: ->
     @$el.children().detach()
@@ -17,4 +19,5 @@ class window.HandView extends Backbone.View
     @$el.append @collection.map (card) ->
       new CardView(model: card).$el
     @$('.score').text @collection.scores()[0]
+
 

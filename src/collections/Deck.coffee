@@ -11,8 +11,7 @@ class window.Deck extends Backbone.Collection
 
   dealPlayer: ->
     a = new Hand [@pop(), @pop()], @
-    console.log("OUTSIDE", a.scores())
-    # a.checkOutcome()
+    a.checkOutcome()
     a
 
 
