@@ -41,23 +41,31 @@ class window.App extends Backbone.Model
 
   tie: ->
     alert("TIE")
-    @resetGame()
+    setTimeout(@resetGame.bind(this), 1000)
     #Reset
   playerWins: ->
     alert("PLAYER WINS")
-    @resetGame()
-    # @get('playerWinTally')
+    @set 'playerWinTally', @get('playerWinTally')+1
+    setTimeout(@resetGame.bind(this), 1000)
+
 
   dealerWins: ->
     alert("DEALER WINS")
-    @resetGame()
+    @set 'dealerWinTally', @get('dealerWinTally')+1
+    setTimeout(@resetGame.bind(this), 1000)
 
   resetGame: ->
     @get('playerHand').reset()
-    @get('dealerHand').reset()
-    console.log(@get('playerHand'))
 
-    # @set 'dealerHand', @get('deck').dealDealer()
+    @get('playerHand').hit()
+    @get('playerHand').hit()
+
+
+    @get('dealerHand').reset()
+
+    @get('dealerHand').hit()
+    @get('dealerHand').hit()
+
 
   # Player and Dealer blackjack heard
     # tie, call compareScores function

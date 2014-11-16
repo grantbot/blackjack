@@ -50,7 +50,7 @@ class window.Hand extends Backbone.Collection
   dealerPlay: ->
     @models[0].set('revealed', true)
     # Dealer should stand on soft 17s (e.g. 17 = 6 + Ace (high)) as well
-    while Math.min(@scores()[0], @scores()[1]) < 17
+    while @scores()[0] < 17
       console.log(@scores()[0])
       @hit()
 

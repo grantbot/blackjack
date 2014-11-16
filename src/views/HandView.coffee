@@ -10,8 +10,8 @@ class window.HandView extends Backbone.View
     @render()
 
     #Refactor these to distinguish between player and dealer
-    @collection.on 'blackjack', (playerOrDealer) => console.log(playerOrDealer)
-    @collection.on 'bust', (playerOrDealer) => console.log(playerOrDealer)
+    # @collection.on 'blackjack', (playerOrDealer) => console.log(playerOrDealer)
+    # @collection.on 'bust', (playerOrDealer) => console.log(playerOrDealer)
 
   render: ->
     @$el.children().detach()
